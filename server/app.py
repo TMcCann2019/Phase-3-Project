@@ -1,5 +1,5 @@
 from config import app, migrate
-
+from rich import print
 from models import db
 
 if __name__ == "__main__":
