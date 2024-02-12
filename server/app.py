@@ -4,7 +4,7 @@ from models import db
 from db_utils import get_all_pets, get_all_trainers
 
 def display_welcome():
-  print("[cyan]Welcom to Fido Training and Grooming[/cyan]")
+  print("[cyan]Welcome to Fido Training and Grooming[/cyan]")
     
 def display_main_menu():
   print("[magenta]Main Menu[/magenta]")
@@ -14,24 +14,24 @@ def display_main_menu():
   print("4. Add a new Pet")
   print("5. Exit")
 
-def get_main_menu_choice():
-  return input("Which one would you like to do? ")
+# def get_main_menu_choice():
+#   return input("Which one would you like to do? ")
 
-def display_all_trainers():
-  trainers = get_all_trainers()
-  for trainer in trainers:
-    print(f"{trainer.id} | {trainer.name} | {trainer.specialization}")
+# def display_all_trainers():
+#   trainers = get_all_trainers()
+#   for trainer in trainers:
+#     print(f"{trainer.id} | {trainer.name} | {trainer.specialization}")
 
-def add_new_trainer():
-  pass
+# def add_new_trainer():
+#   pass
 
-def display_all_pets():
-  pets = get_all_pets()
-  for pet in pets:
-    print(f"{pet.id} | {pet.name} | {pet.species}")
+# def display_all_pets():
+#   pets = get_all_pets()
+#   for pet in pets:
+#     print(f"{pet.id} | {pet.name} | {pet.species}")
 
-def add_new_pet():
-  pass
+# def add_new_pet():
+#   pass
 
 if __name__ == "__main__":
   with app.app_context():
