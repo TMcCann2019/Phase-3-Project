@@ -8,3 +8,9 @@ def get_all_pets():
 
 def get_all_trainings():
   return db.session.query(Training).all()
+
+def find_trainer_by_id(id):
+  return db.session.get(Trainer, id)
+
+def find_pet_by_id(id):
+  return db.session.get(Pet, id)
