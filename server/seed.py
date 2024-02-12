@@ -56,3 +56,124 @@ if __name__ == "__main__":
 
     db.session.add(trainer_7)
     db.session.commit()
+
+    pet_1 = Pet(
+      name = "Milo",
+      species = "Pitbull",
+      temperament = "Aggressive",
+      muzzle = "Yes",
+    )
+
+    db.session.add(pet_1)
+
+    pet_2 = Pet(
+      name = "Rio",
+      species = "Pitbull mix",
+      temperament = "Friendly and loving",
+      muzzle = "No",
+    )
+
+    db.session.add(pet_2)
+
+    pet_3 = Pet(
+      name = "Bailey",
+      species = "Heeler",
+      temperament = "Hyper",
+      muzzle = "No",
+    )
+
+    db.session.add(pet_3)
+
+    pet_4 = Pet(
+      name = "Ceasar",
+      species = "Shepard",
+      temperament = "Friendly and loving",
+      muzzle = "No",
+    )
+
+    db.session.add(pet_4)
+
+    pet_5 = Pet(
+      name = "Bruce",
+      species = "Shepard",
+      temperament = "Friendly and loving",
+      muzzle = "No",
+    )
+
+    db.session.add(pet_5)
+
+    pet_6 = Pet(
+      name = "Jelly Bean",
+      species = "Poodle",
+      temperament = "Dog and human reactive",
+      muzzle = "Yes",
+    )
+
+    db.session.add(pet_6)
+
+    pet_7 = Pet(
+      name = "Shep",
+      species = "Belgian Malinous",
+      temperament = "Aggressive but friendly",
+      muzzle = "No",
+    )
+
+    db.session.add(pet_7)
+    db.session.commit()
+
+    training_1 = Training(
+      name = "In-home lesson",
+      trainer_id = trainer_1.id,
+      pet_id = pet_1.id
+    )
+
+    db.session.add(training_1)
+
+    training_2 = Training(
+      name = "Facility lesson",
+      trainer_id = trainer_5.id,
+      pet_id = pet_2.id
+    )
+
+    db.session.add(training_2)
+
+    training_3 = Training(
+      name = "Nail trim",
+      trainer_id = trainer_2.id,
+      pet_id = pet_3.id
+    )
+
+    db.session.add(training_3)
+
+    training_4 = Training(
+      name = "Bath",
+      trainer_id = trainer_5.id,
+      pet_id = pet_2.id
+    )
+
+    db.session.add(training_4)
+
+    training_5 = Training(
+      name = "In-Home lesson",
+      trainer_id = trainer_6.id,
+      pet_id = pet_3.id
+    )
+
+    db.session.add(training_5)
+
+    training_6 = Training(
+      name = "In-Home lesson",
+      trainer_id = trainer_7.id,
+      pet_id = pet_4.id
+    )
+
+    db.session.add(training_6)
+
+    training_7 = Training(
+      name = "In-Home lesson",
+      trainer_id = trainer_4.id,
+      pet_id = pet_5.id
+    )
+
+    db.session.add(training_7)
+    db.session.commit()
