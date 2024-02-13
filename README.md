@@ -50,7 +50,7 @@ Update a training
 Description: Allows updating a training session associated with a specific trainer.
 
 See more about the pets
-Description: Displays detailed information about a specific pet, including their ID, name, species, temperament, and muzzle.
+Description: Displays detailed information about a specific pet, including their ID, name, species, temperament, and if they need a muzzle or not.
 
 Remove a pet
 Description: Removes a pet from the system.
