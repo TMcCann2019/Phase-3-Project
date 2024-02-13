@@ -126,7 +126,9 @@ def handle_pet_choice(choice, pet):
     return
 
 def show_pet_trainings(pet):
-  pass
+  trainings = pet.trainings
+  for training in trainings:
+    print(f"{training.id} | {training.name}")
 
 def add_new_pet():
   pass
@@ -148,4 +150,4 @@ if __name__ == "__main__":
         add_new_pet()
       else:
         break
-      break
+      
