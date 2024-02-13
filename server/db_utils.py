@@ -21,9 +21,9 @@ def display_add_training_to_pet_submenu(pet):
     req_type = "What type of training do you want?"
     request_choice, index = pick(["In-Home Lesson", "Facility Lesson", "Nail Trim", "Bath"], req_type)
     training = Training(
-    request = request_choice,
-    trainer_id = trainer.id,
-    pet_id = pet.id
+        name = request_choice,
+        trainer_id = trainer.id,
+        pet_id = pet.id
     )
     db.session.add(training)
     db.session.commit()
