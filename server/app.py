@@ -1,7 +1,7 @@
 from config import app, migrate
 from rich import print
 from models import db
-from db_utils import get_all_pets, get_all_trainers, get_all_trainings, find_trainer_by_id, find_pet_by_id
+from db_utils import get_all_pets, get_all_trainers, find_trainer_by_id, find_pet_by_id, display_add_training_to_pet_submenu
 
 def display_welcome():
   print("[cyan]Welcome to Fido Training and Grooming[/cyan]")
@@ -33,8 +33,15 @@ def display_all_trainers():
   else:
     return
 
+def remove_trainer_by_id():
+  search_id = input("Enter the id of the trainer you would like to remove: ")
+  trainer = find_trainer_by_id(search_id)
+  db.session.delete(trainer)
+  db.session.commit()
+  display_all_trainers()
+
 def choose_trainer_by_id():
-  search_id = input("Enter the id of the trainer")
+  search_id = input("Enter the id of the trainer: ")
   trainer = find_trainer_by_id(search_id)
   print(
     f"Id: {trainer.id}, Name: {trainer.name}, Specialization: {trainer.specialization}"
@@ -46,6 +53,23 @@ def display_trainer_submenu(trainer):
   print("2. Update a training")
   print("3. Exit")
   choice = input()
+  handle_trainer_choice(choice, trainer)
+
+def handle_trainer_choice(choice, trainer):
+  if choice == "1":
+    show_trainer_trainings(trainer)
+  elif choice == "2":
+    update_trainer(trainer)
+  else:
+    return
+
+def show_trainer_trainings(trainer):
+  trainings = trainer.trainings
+  for training in trainings:
+    print(f"{training.id} | {training.name}")
+
+def update_trainer(trainer):
+  pass
 
 def add_new_trainer():
   pass
@@ -69,8 +93,20 @@ def display_all_pets():
   else:
     return
 
+def add_new_training_to_pet_by_id():
+  search_id = input("Enter the id of the pet you would like to add a training too: ")
+  pet = find_pet_by_id(search_id)
+  display_add_training_to_pet_submenu(pet)
+
+def remove_pet_by_id():
+  search_id = input("Enter the id of the pet you want to remove: ")
+  pet = find_pet_by_id(search_id)
+  db.session.delete(pet)
+  db.session.commit()
+  display_all_pets()
+
 def choose_pet_by_id():
-  search_id = input("Enter the id of the pet")
+  search_id = input("Enter the id of the pet: ")
   pet = find_pet_by_id(search_id)
   print(
     f"Id: {pet.id}, Name: {pet.name}, Species: {pet.species}, Temperament: {pet.temperament}, Muzzle: {pet.muzzle}"
@@ -79,8 +115,18 @@ def choose_pet_by_id():
 
 def display_pet_submenu(pet):
   print("1. See a pets trainings")
-  print("3. Exit")
+  print("2. Exit")
   choice = input()
+  handle_pet_choice(choice, pet)
+
+def handle_pet_choice(choice, pet):
+  if choice == "1":
+    show_pet_trainings(pet)
+  else:
+    return
+
+def show_pet_trainings(pet):
+  pass
 
 def add_new_pet():
   pass

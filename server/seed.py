@@ -122,7 +122,7 @@ if __name__ == "__main__":
     db.session.commit()
 
     training_1 = Training(
-      name = "In-home lesson",
+      name = "In-Home Lesson",
       trainer_id = trainer_1.id,
       pet_id = pet_1.id
     )
@@ -130,7 +130,7 @@ if __name__ == "__main__":
     db.session.add(training_1)
 
     training_2 = Training(
-      name = "Facility lesson",
+      name = "Facility Lesson",
       trainer_id = trainer_5.id,
       pet_id = pet_2.id
     )
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     db.session.add(training_2)
 
     training_3 = Training(
-      name = "Nail trim",
+      name = "Nail Trim",
       trainer_id = trainer_2.id,
       pet_id = pet_3.id
     )
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     db.session.add(training_4)
 
     training_5 = Training(
-      name = "In-Home lesson",
+      name = "In-Home Lesson",
       trainer_id = trainer_6.id,
       pet_id = pet_3.id
     )
@@ -162,7 +162,7 @@ if __name__ == "__main__":
     db.session.add(training_5)
 
     training_6 = Training(
-      name = "In-Home lesson",
+      name = "In-Home Lesson",
       trainer_id = trainer_7.id,
       pet_id = pet_4.id
     )
@@ -170,7 +170,7 @@ if __name__ == "__main__":
     db.session.add(training_6)
 
     training_7 = Training(
-      name = "In-Home lesson",
+      name = "In-Home Lesson",
       trainer_id = trainer_4.id,
       pet_id = pet_5.id
     )
