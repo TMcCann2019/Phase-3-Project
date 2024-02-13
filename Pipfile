@@ -17,6 +17,7 @@ Flask-Migrate = "3.1.0"
 Flask-SQLAlchemy = "*"
 werkzeug = "2.2.2"
 python-dotenv = "*"
+pick = "*"
 
 [requires]
 python_full_version = "3.8.13"
