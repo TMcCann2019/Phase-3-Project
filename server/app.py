@@ -4,6 +4,43 @@ from models import db, Training
 from db_utils import get_all_pets, get_all_trainers, find_trainer_by_id, find_pet_by_id, display_add_training_to_pet_submenu, add_new_pet, add_new_trainer
 
 def display_welcome():
+  print("""
+    OOOOOOO0o.   ...'.....          ...............'.,
+    OOOOOOkkl......   .,,'...        ..............'';
+    Oko::;,,'.....     .:llc:;'..... ..............,'.
+    Ox,                .';:coxxdl,.    ............,;.
+    Ok;              .',;:coxxxo:.      ...... ...';cl
+    OOx,          ..,:odolddollc:'.      ......  ...'c
+    OO0k,        .':ccc:;,,;;;;;'.....   ..''... ....;
+    0000d::,     .,::::,'..',,,.   ...     .........,;
+    0000000Oc   .......'''''',.     ...    ....  ..;;;
+    00000000d' ..     .,:;;,..              ... ..','.
+    00000000x;....   .':lll:..              ....',,,..
+    KKK00000x:'......;:lolclooc.        ........',,,,'
+    KKKKKKK0xc,'',',:cooc:ldxOkc..     .,;;'. ...''',,
+    XXNNNXXXkl:;;;;;;;:;;;loxOOd:,'.....;co:. .....'''
+    NNXXKKXKxlcc:;'.   ..,,,cdxxl;;:;;,,cdo,........''
+    KKKXK00Oo::c;,.       .,cloddc::;:ccod;.';;.......
+    K000KKKOd:;:,...      .':ccodl:::clodl;,:;,'......
+    kOOkkOOkd:;,;,.... . ....',::,;cccoddc,'',:,......
+    kkkxdoooc;,'',,'..   ..'''''..;ccloll:,''','......
+    odxxxoc:;;;'..''..  ...'...',:cclllll;'.',::'.....
+    lloxxdl,',''...'..   ...,;;::::cc:coxc..':loc;'..,
+    cllll:'..''''........',:::::::c::;:lkk:',;:::c;,;c
+    oolc:;'.,;,'... ...',;;:::::::;;,';lkOl'',;;;;,,,,
+    kxdoc:,',;'..........',;;;;;;,''.';coxd,..',;;;;::
+    xdol:;'.';,............'....''..';:ccokc....',;;::
+    dol:;,'...''''............ .....';:clxOd,.'''''',,
+    lc:;,'... .'''',,'..... ... ....,:ccloxkxc::ccclod
+    c:;,,'... ....,,,,,,........ ...,:::;;okKKOdddxk0K
+    c:,,''''.  .....'',,,'''''......','.',cdk0KK0O000K
+    c:;,,'''..  .,'.....''''','.......'',:cldxOKOkk0K0
+    ::;,''''..  .,,'........''''...''',,;;:cldxkOOkk0K
+    ;;,,,'''....',,''''',,'''',,,'',,,,,,;;::lodkkxxkK
+    ;,,,'.......,,,,',,,,,,,,;;;;,,,,,'''',,,;;:ldoloO
+    :;,'''......',,''''''''''',,,,'''..........':oxoco
+    ;,,,','......'''.'''....'',;;;;,,......'....';ll::
+  """)
   print("[cyan]Welcome to Fido Training and Grooming[/cyan]")
     
 def display_main_menu():
@@ -83,7 +120,6 @@ def show_trainer_trainings(trainer):
     print(f"{training.id} | {training.name}")
 
 def update_trainings(trainer):
-  print("Update Training Information:")
   trainings = trainer.trainings
   if not trainings:
     print("No trainings to update")
@@ -93,12 +129,13 @@ def update_trainings(trainer):
     print(f"{training.id} | {training.name}")
   training_id = input("Enter the ID of the training to update: ")
   training = Training.query.get(training_id)
-  if not training:
+  if training and training in trainer.trainings:
+    new_name = input(f"New Name: ")
+    training.name = new_name
+    db.session.commit()
+  else:
     print("Training not found")
     update_trainings(trainer)
-  new_name = input(f"New Name ({training.name}): ")
-  training.name = new_name
-  db.session.commit()
 
 def display_all_pets():
   pets = get_all_pets()

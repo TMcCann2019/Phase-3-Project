@@ -177,3 +177,12 @@ if __name__ == "__main__":
 
     db.session.add(training_7)
     db.session.commit()
+
+    training_8 = Training(
+      name = "Bath",
+      trainer_id = trainer_1.id,
+      pet_id = pet_6.id
+    )
+
+    db.session.add(training_8)
+    db.session.commit()
