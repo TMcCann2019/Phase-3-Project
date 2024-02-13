@@ -62,7 +62,7 @@ def display_all_trainers():
   print("1. See more about the trainer")
   print("2. Remove a Trainer")
   print("3. Exit")
-  choice = input()
+  choice = input("Your choice for the trainers?: ")
   if choice == "1":
     choose_trainer_by_id()
   elif choice == "2":
@@ -74,7 +74,7 @@ def display_all_trainers():
     display_all_trainers()
 
 def remove_trainer_by_id():
-  search_id = input("Enter the id of the trainer you would like to remove: ")
+  search_id = input("Enter the number of the trainer you would like to remove: ")
   trainer = find_trainer_by_id(search_id)
   if trainer is None:
     print("Trainer not found")
@@ -85,7 +85,7 @@ def remove_trainer_by_id():
     display_all_trainers()
 
 def choose_trainer_by_id():
-  search_id = input("Enter the id of the trainer: ")
+  search_id = input("Enter the number of the trainer: ")
   trainer = find_trainer_by_id(search_id)
   if trainer is not None:
     print(
@@ -100,7 +100,7 @@ def display_trainer_submenu(trainer):
   print("1. See a trainers trainings")
   print("2. Update a training")
   print("3. Exit")
-  choice = input()
+  choice = input("What would you like to do now?: ")
   handle_trainer_choice(choice, trainer)
 
 def handle_trainer_choice(choice, trainer):
@@ -127,12 +127,13 @@ def update_trainings(trainer):
   print("Current Trainings:")
   for training in trainings:
     print(f"{training.id} | {training.name}")
-  training_id = input("Enter the ID of the training to update: ")
+  training_id = input("Enter the number of the training to update: ")
   training = Training.query.get(training_id)
   if training and training in trainer.trainings:
-    new_name = input(f"New Name: ")
+    new_name = input(f"New Training: ")
     training.name = new_name
     db.session.commit()
+    display_trainer_submenu(trainer)
   else:
     print("Training not found")
     update_trainings(trainer)
@@ -146,7 +147,7 @@ def display_all_pets():
   print("2. Remove a pet")
   print("3. Add a new training")
   print("4. Exit")
-  choice = input()
+  choice = input("Choice?: ")
   if choice == "1":
     choose_pet_by_id()
   elif choice == "2":
@@ -160,7 +161,7 @@ def display_all_pets():
     display_all_pets()
 
 def add_new_training_to_pet_by_id():
-  search_id = input("Enter the id of the pet you would like to add a training too: ")
+  search_id = input("Enter the number of the pet you would like to add a training too: ")
   pet = find_pet_by_id(search_id)
   if pet is None:
     print("Pet not found")
@@ -169,7 +170,7 @@ def add_new_training_to_pet_by_id():
     display_add_training_to_pet_submenu(pet)
 
 def remove_pet_by_id():
-  search_id = input("Enter the id of the pet you want to remove: ")
+  search_id = input("Enter the number of the pet you want to remove: ")
   pet = find_pet_by_id(search_id)
   if pet is None:
     print("Pet not found")
@@ -180,7 +181,7 @@ def remove_pet_by_id():
     display_all_pets()
 
 def choose_pet_by_id():
-  search_id = input("Enter the id of the pet: ")
+  search_id = input("Enter the number of the pet: ")
   pet = find_pet_by_id(search_id)
   if pet is not None:
     print(
@@ -194,7 +195,7 @@ def choose_pet_by_id():
 def display_pet_submenu(pet):
   print("1. See a pets trainings")
   print("2. Exit")
-  choice = input()
+  choice = input("Your next choice?: ")
   handle_pet_choice(choice, pet)
 
 def handle_pet_choice(choice, pet):

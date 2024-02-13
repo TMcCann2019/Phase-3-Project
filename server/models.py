@@ -18,6 +18,7 @@ class Training(db.Model):
     __tablename__ = "trainings"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
+    date = db.Column(db.String(255))
     trainer_id = db.Column(db.Integer, db.ForeignKey("trainers.id"))
     trainer = db.relationship("Trainer", backref=db.backref("trainings", lazy="dynamic"))
     pet_id = db.Column(db.Integer, db.ForeignKey("pets.id"))

@@ -20,8 +20,10 @@ def display_add_training_to_pet_submenu(pet):
     trainer = db.session.query(Trainer).filter(Trainer.name == trainer_name).first()
     req_type = "What type of training do you want?"
     request_choice, index = pick(["In-Home Lesson", "Facility Lesson", "Nail Trim", "Bath"], req_type)
+    date_choice = input("When would you like to do this training?(Please use MM-DD-YY format and time in HH:MM format): ")
     training = Training(
         name = request_choice,
+        date = date_choice,
         trainer_id = trainer.id,
         pet_id = pet.id
     )
@@ -31,9 +33,9 @@ def display_add_training_to_pet_submenu(pet):
 def add_new_pet():
     print("Enter the information for your pet here:")
     name = input("Name: ")
-    species = input("Species: ")
-    temperament = input("Temperament: ")
-    muzzle = input("Muzzle: ")
+    species = input("What species are they?: ")
+    temperament = input("What kind of temperament do they have(ex. aggressive, happy, friendly)?: ")
+    muzzle = input("Do they need a Muzzle (Yes or No only)?: ")
 
     new_pet = Pet(
         name = name,
@@ -48,7 +50,7 @@ def add_new_pet():
 def add_new_trainer():
     print("Enter the information for your trainer here:")
     name = input("Name: ")
-    specialization = input("Specialization: ")
+    specialization = input("What do they specialize in (ex. Grooming, Muzzle Conditioning)?: ")
 
     new_trainer = Trainer(
         name = name,

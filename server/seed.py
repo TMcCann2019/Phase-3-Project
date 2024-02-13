@@ -123,6 +123,7 @@ if __name__ == "__main__":
 
     training_1 = Training(
       name = "In-Home Lesson",
+      date = "02-14-24 09:00",
       trainer_id = trainer_1.id,
       pet_id = pet_1.id
     )
@@ -131,6 +132,7 @@ if __name__ == "__main__":
 
     training_2 = Training(
       name = "Facility Lesson",
+      date = "02-14-24 12:00",
       trainer_id = trainer_5.id,
       pet_id = pet_2.id
     )
@@ -139,6 +141,7 @@ if __name__ == "__main__":
 
     training_3 = Training(
       name = "Nail Trim",
+      date = "02-14-24 18:00",
       trainer_id = trainer_2.id,
       pet_id = pet_3.id
     )
@@ -147,6 +150,7 @@ if __name__ == "__main__":
 
     training_4 = Training(
       name = "Bath",
+      date = "02-20-24 09:00",
       trainer_id = trainer_5.id,
       pet_id = pet_2.id
     )
@@ -155,6 +159,7 @@ if __name__ == "__main__":
 
     training_5 = Training(
       name = "In-Home Lesson",
+      date = "02-25-24 09:00",
       trainer_id = trainer_6.id,
       pet_id = pet_3.id
     )
@@ -163,6 +168,7 @@ if __name__ == "__main__":
 
     training_6 = Training(
       name = "In-Home Lesson",
+      date = "02-10-24 09:00",
       trainer_id = trainer_7.id,
       pet_id = pet_4.id
     )
@@ -171,6 +177,7 @@ if __name__ == "__main__":
 
     training_7 = Training(
       name = "In-Home Lesson",
+      date = "03-14-24 09:00",
       trainer_id = trainer_4.id,
       pet_id = pet_5.id
     )
@@ -180,6 +187,7 @@ if __name__ == "__main__":
 
     training_8 = Training(
       name = "Bath",
+      date = "03-01-24 09:00",
       trainer_id = trainer_1.id,
       pet_id = pet_6.id
     )
