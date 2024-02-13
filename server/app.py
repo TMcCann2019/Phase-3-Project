@@ -1,7 +1,7 @@
 from config import app, migrate
 from rich import print
-from models import db
-from db_utils import get_all_pets, get_all_trainers, find_trainer_by_id, find_pet_by_id, display_add_training_to_pet_submenu
+from models import db, Training
+from db_utils import get_all_pets, get_all_trainers, find_trainer_by_id, find_pet_by_id, display_add_training_to_pet_submenu, add_new_pet, add_new_trainer
 
 def display_welcome():
   print("[cyan]Welcome to Fido Training and Grooming[/cyan]")
@@ -30,8 +30,11 @@ def display_all_trainers():
     choose_trainer_by_id()
   elif choice == "2":
     remove_trainer_by_id()
-  else:
+  elif choice == "3":
     return
+  else:
+    print("Invalid input. Please choose a number above")
+    display_all_trainers()
 
 def remove_trainer_by_id():
   search_id = input("Enter the id of the trainer you would like to remove: ")
@@ -43,9 +46,13 @@ def remove_trainer_by_id():
 def choose_trainer_by_id():
   search_id = input("Enter the id of the trainer: ")
   trainer = find_trainer_by_id(search_id)
-  print(
-    f"Id: {trainer.id}, Name: {trainer.name}, Specialization: {trainer.specialization}"
-  )
+  if trainer is not None:
+    print(
+      f"Id: {trainer.id}, Name: {trainer.name}, Specialization: {trainer.specialization}"
+    )
+  else:
+    print("Trainer not found")
+    choose_trainer_by_id()
   display_trainer_submenu(trainer)
 
 def display_trainer_submenu(trainer):
@@ -59,20 +66,35 @@ def handle_trainer_choice(choice, trainer):
   if choice == "1":
     show_trainer_trainings(trainer)
   elif choice == "2":
-    update_trainer(trainer)
-  else:
+    update_trainings(trainer)
+  elif choice == "3":
     return
+  else:
+    print("Invalid input.")
+    display_trainer_submenu(trainer)
 
 def show_trainer_trainings(trainer):
   trainings = trainer.trainings
   for training in trainings:
     print(f"{training.id} | {training.name}")
 
-def update_trainer(trainer):
-  pass
-
-def add_new_trainer():
-  pass
+def update_trainings(trainer):
+  print("Update Training Information:")
+  trainings = trainer.trainings
+  if not trainings:
+    print("No trainings to update")
+    return
+  print("Current Trainings:")
+  for training in trainings:
+    print(f"{training.id} | {training.name}")
+  training_id = input("Enter the ID of the training to update: ")
+  training = Training.query.get(training_id)
+  if not training:
+    print("Training not found")
+    update_trainings(trainer)
+  new_name = input(f"New Name ({training.name}): ")
+  training.name = new_name
+  db.session.commit()
 
 def display_all_pets():
   pets = get_all_pets()
@@ -90,8 +112,11 @@ def display_all_pets():
     remove_pet_by_id()
   elif choice == "3":
     add_new_training_to_pet_by_id()
-  else:
+  elif choice == "4":
     return
+  else:
+    print("Unknown choice. Pleae choose a number between 1 and 4")
+    display_all_pets()
 
 def add_new_training_to_pet_by_id():
   search_id = input("Enter the id of the pet you would like to add a training too: ")
@@ -108,9 +133,13 @@ def remove_pet_by_id():
 def choose_pet_by_id():
   search_id = input("Enter the id of the pet: ")
   pet = find_pet_by_id(search_id)
-  print(
-    f"Id: {pet.id}, Name: {pet.name}, Species: {pet.species}, Temperament: {pet.temperament}, Muzzle: {pet.muzzle}"
-  )
+  if pet is not None:
+    print(
+      f"Id: {pet.id}, Name: {pet.name}, Species: {pet.species}, Temperament: {pet.temperament}, Muzzle: {pet.muzzle}"
+    )
+  else:
+    print("Pet not found")
+    choose_pet_by_id()
   display_pet_submenu(pet)
 
 def display_pet_submenu(pet):
@@ -122,16 +151,16 @@ def display_pet_submenu(pet):
 def handle_pet_choice(choice, pet):
   if choice == "1":
     show_pet_trainings(pet)
-  else:
+  elif choice == "2":
     return
+  else:
+    print("Choice can only be 1 or 2")
+    display_pet_submenu(pet)
 
 def show_pet_trainings(pet):
   trainings = pet.trainings
   for training in trainings:
     print(f"{training.id} | {training.name}")
-
-def add_new_pet():
-  pass
 
 if __name__ == "__main__":
   with app.app_context():
@@ -148,6 +177,8 @@ if __name__ == "__main__":
         display_all_pets()
       elif choice == "4":
         add_new_pet()
-      else:
+      elif choice == "5":
         break
+      else:
+        print("Can only be between 1 and 5. No letters as well")
       
