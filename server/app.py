@@ -39,9 +39,13 @@ def display_all_trainers():
 def remove_trainer_by_id():
   search_id = input("Enter the id of the trainer you would like to remove: ")
   trainer = find_trainer_by_id(search_id)
-  db.session.delete(trainer)
-  db.session.commit()
-  display_all_trainers()
+  if trainer is None:
+    print("Trainer not found")
+    remove_trainer_by_id()
+  else:
+    db.session.delete(trainer)
+    db.session.commit()
+    display_all_trainers()
 
 def choose_trainer_by_id():
   search_id = input("Enter the id of the trainer: ")
@@ -121,14 +125,22 @@ def display_all_pets():
 def add_new_training_to_pet_by_id():
   search_id = input("Enter the id of the pet you would like to add a training too: ")
   pet = find_pet_by_id(search_id)
-  display_add_training_to_pet_submenu(pet)
+  if pet is None:
+    print("Pet not found")
+    add_new_training_to_pet_by_id()
+  else:
+    display_add_training_to_pet_submenu(pet)
 
 def remove_pet_by_id():
   search_id = input("Enter the id of the pet you want to remove: ")
   pet = find_pet_by_id(search_id)
-  db.session.delete(pet)
-  db.session.commit()
-  display_all_pets()
+  if pet is None:
+    print("Pet not found")
+    remove_pet_by_id()
+  else:
+    db.session.delete(pet)
+    db.session.commit()
+    display_all_pets()
 
 def choose_pet_by_id():
   search_id = input("Enter the id of the pet: ")
