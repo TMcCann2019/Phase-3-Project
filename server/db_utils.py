@@ -13,6 +13,9 @@ def find_trainer_by_id(id):
 def find_pet_by_id(id):
     return db.session.get(Pet, id)
 
+def get_trainer_trainings(id):
+    return db.session.query(Training).filter(Training.trainer_id == id).all()
+
 def display_add_training_to_pet_submenu(pet):
     trainer_names = [trainer.name for trainer in db.session.query(Trainer).all()]
     title = "Which trainer do you want for this training?"

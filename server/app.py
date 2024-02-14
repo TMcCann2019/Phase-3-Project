@@ -12,7 +12,8 @@ from db_utils import (
     search_trainer_by,
     search_pet_by_species,
     search_pet_by_temperament,
-    search_pet_by_muzzle
+    search_pet_by_muzzle,
+    get_trainer_trainings,
 )
 
 
@@ -145,23 +146,22 @@ def show_trainer_trainings(trainer):
     for training in trainings:
         print(f"{training.id} | {training.name}")
 
-
 def update_trainings(trainer):
-    trainings = trainer.trainings
-    if not trainings:
+    trainings = get_trainer_trainings(id = trainer.id)
+    if len(trainings) == 0:
         print("No trainings to update")
-        return
-    print("[magenta]Current Trainings[/magenta]:")
-    for training in trainings:
+    else:
+      print("[magenta]Current Trainings[/magenta]:")
+      for training in trainings:
         print(f"{training.id} | {training.name}")
-    training_id = input("Enter the number of the training to update: ")
-    training = Training.query.get(training_id)
-    if training and training in trainer.trainings:
+      training_id = input("Enter the number of the training to update: ")
+      training = Training.query.get(training_id)
+      if training and training in trainer.trainings:
         new_name = input(f"New Training: ").capitalize()
         training.name = new_name
         db.session.commit()
         display_trainer_submenu(trainer)
-    else:
+      else:
         print("Training not found")
         update_trainings(trainer)
 
@@ -205,7 +205,7 @@ def search_pet_by():
     elif choice == "3":
         search_pet_by_muzzle()
     elif choice == "4":
-        return
+        display_all_pets()
     else:
         print("Unknown choice. Pleae choose a number between 1 and 4")
         search_pet_by()
@@ -258,7 +258,7 @@ def handle_pet_choice(choice, pet):
     if choice == "1":
         show_pet_trainings(pet)
     elif choice == "2":
-        return
+        display_all_pets()
     else:
         print("Choice can only be 1 or 2")
         display_pet_submenu(pet)
@@ -268,6 +268,7 @@ def show_pet_trainings(pet):
     trainings = pet.trainings
     for training in trainings:
         print(f"{training.id} | {training.name}")
+        display_all_pets()
 
 
 if __name__ == "__main__":
