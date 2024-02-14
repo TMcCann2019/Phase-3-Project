@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
     pet_2 = Pet(
       name = "Rio",
-      species = "Pitbull mix",
+      species = "Pitbull",
       temperament = "Friendly and loving",
       muzzle = "No",
     )

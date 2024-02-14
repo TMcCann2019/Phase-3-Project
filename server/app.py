@@ -157,7 +157,7 @@ def update_trainings(trainer):
     training_id = input("Enter the number of the training to update: ")
     training = Training.query.get(training_id)
     if training and training in trainer.trainings:
-        new_name = input(f"New Training: ")
+        new_name = input(f"New Training: ").capitalize()
         training.name = new_name
         db.session.commit()
         display_trainer_submenu(trainer)
@@ -208,7 +208,7 @@ def search_pet_by():
         return
     else:
         print("Unknown choice. Pleae choose a number between 1 and 4")
-        display_all_pets()
+        search_pet_by()
 
 def add_new_training_to_pet_by_id():
     search_id = input(

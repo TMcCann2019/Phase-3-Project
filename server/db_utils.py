@@ -32,10 +32,10 @@ def display_add_training_to_pet_submenu(pet):
 
 def add_new_pet():
     print("Enter the information for your pet here:")
-    name = input("Name: ")
-    species = input("What species are they?: ")
-    temperament = input("What kind of temperament do they have(ex. aggressive, happy, friendly)?: ")
-    muzzle = input("Do they need a Muzzle (Yes or No only)?: ")
+    name = input("Name: ").capitalize()
+    species = input("What species are they?: ").capitalize()
+    temperament = input("What kind of temperament do they have(ex. aggressive, happy, friendly)?: ").capitalize()
+    muzzle = input("Do they need a Muzzle (Yes or No only)?: ").capitalize()
 
     new_pet = Pet(
         name = name,
@@ -49,8 +49,8 @@ def add_new_pet():
 
 def add_new_trainer():
     print("Enter the information for your trainer here:")
-    name = input("Name: ")
-    specialization = input("What do they specialize in (ex. Grooming, Muzzle Conditioning)?: ")
+    name = input("Name: ").capitalize()
+    specialization = input("What do they specialize in (ex. Grooming, Muzzle Conditioning)?: ").capitalize()
 
     new_trainer = Trainer(
         name = name,
@@ -64,10 +64,36 @@ def search_trainer_by():
     pass
 
 def search_pet_by_species():
-    pass
+    print("What species are you looking for?")
+    species = input("Species: ").capitalize()
+    pets = db.session.query(Pet).filter(Pet.species == species).all()
+    print(species)
+    print(pets)
+    if pets != species:
+        print("No pets found with that species")
+        search_pet_by_species()
+    else:
+        for pet in pets:
+            print(f"{pet.id} | {pet.name} | {pet.species}")
 
 def search_pet_by_temperament():
-    pass
+    print("What temperament are you looking for?")
+    temperament = input("Temperament: ").capitalize()
+    pets = db.session.query(Pet).filter(Pet.temperament == temperament).all()
+    if pets != temperament:
+        print("No pets found with that temperament")
+        search_pet_by_species()
+    else:
+        for pet in pets:
+            print(f"{pet.id} | {pet.name} | {pet.temperament}")
 
 def search_pet_by_muzzle():
-    pass
+    print("Are you looking for dogs that need a muzzle or no?")
+    muzzle = input("Muzzle(Yes or No): ").capitalize()
+    pets = db.session.query(Pet).filter(Pet.muzzle == muzzle).all()
+    if pets != muzzle:
+        print("No pets found with that temperament")
+        search_pet_by_species()
+    else:
+        for pet in pets:
+            print(f"{pet.id} | {pet.name} | {pet.muzzle}")
