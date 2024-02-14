@@ -9,14 +9,14 @@ if __name__ == "__main__":
 
     trainer_1 = Trainer(
       name="Pete",
-      specialization="Owner and head trainer"
+      specialization="Owner"
     )
 
     db.session.add(trainer_1)
 
     trainer_2 = Trainer(
       name="Kayla",
-      specialization="Trainer and Groomer"
+      specialization="Groomer"
     )
 
     db.session.add(trainer_2)

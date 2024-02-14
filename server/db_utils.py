@@ -61,7 +61,15 @@ def add_new_trainer():
     db.session.commit()
 
 def search_trainer_by():
-    pass
+    print("What type of trainer are you looking for?")
+    trainer_type = input("Specialization: ").capitalize()
+    trainers = db.session.query(Trainer).filter(Trainer.specialization == trainer_type).all()
+    if len(trainers) > 0:
+        for trainer in trainers:
+            print(f"{trainer.id} | {trainer.name}")
+    else:
+        print("No trainers found")
+        search_trainer_by()
 
 def search_pet_by_species():
     print("What species are you looking for?")
