@@ -50,7 +50,7 @@ def add_new_pet():
 def add_new_trainer():
     print("Enter the information for your trainer here:")
     name = input("Name: ").capitalize()
-    specialization = input("What do they specialize in (ex. Grooming, Muzzle Conditioning)?: ").capitalize()
+    specialization = input("What do they specialize in (ex. Grooming, Muzzle, Trainer, Agressive)?: ").capitalize()
 
     new_trainer = Trainer(
         name = name,
@@ -67,33 +67,31 @@ def search_pet_by_species():
     print("What species are you looking for?")
     species = input("Species: ").capitalize()
     pets = db.session.query(Pet).filter(Pet.species == species).all()
-    print(species)
-    print(pets)
-    if pets != species:
-        print("No pets found with that species")
-        search_pet_by_species()
-    else:
+    if len(pets) > 0:
         for pet in pets:
             print(f"{pet.id} | {pet.name} | {pet.species}")
+    else:
+        print("No pets found with that species")
+        search_pet_by_species()
 
 def search_pet_by_temperament():
     print("What temperament are you looking for?")
     temperament = input("Temperament: ").capitalize()
     pets = db.session.query(Pet).filter(Pet.temperament == temperament).all()
-    if pets != temperament:
-        print("No pets found with that temperament")
-        search_pet_by_species()
-    else:
+    if len(pets) > 0:
         for pet in pets:
             print(f"{pet.id} | {pet.name} | {pet.temperament}")
+    else:
+        print("No pets found with that temperament")
+        search_pet_by_temperament()
 
 def search_pet_by_muzzle():
     print("Are you looking for dogs that need a muzzle or no?")
     muzzle = input("Muzzle(Yes or No): ").capitalize()
     pets = db.session.query(Pet).filter(Pet.muzzle == muzzle).all()
-    if pets != muzzle:
-        print("No pets found with that temperament")
-        search_pet_by_species()
-    else:
+    if len(pets) > 0:
         for pet in pets:
             print(f"{pet.id} | {pet.name} | {pet.muzzle}")
+    else:
+        print("No pets found")
+        search_pet_by_muzzle()

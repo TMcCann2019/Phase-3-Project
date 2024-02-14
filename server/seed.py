@@ -44,14 +44,14 @@ if __name__ == "__main__":
 
     trainer_6 = Trainer(
       name="Tim",
-      specialization="Aggressive dog training"
+      specialization="Aggressive"
     )
 
     db.session.add(trainer_6)
 
     trainer_7 = Trainer(
       name="Jane",
-      specialization="Muzzle conditioning"
+      specialization="Muzzle"
     )
 
     db.session.add(trainer_7)
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     pet_2 = Pet(
       name = "Rio",
       species = "Pitbull",
-      temperament = "Friendly and loving",
+      temperament = "Friendly",
       muzzle = "No",
     )
 
@@ -87,7 +87,7 @@ if __name__ == "__main__":
     pet_4 = Pet(
       name = "Ceasar",
       species = "Shepard",
-      temperament = "Friendly and loving",
+      temperament = "Friendly",
       muzzle = "No",
     )
 
@@ -96,7 +96,7 @@ if __name__ == "__main__":
     pet_5 = Pet(
       name = "Bruce",
       species = "Shepard",
-      temperament = "Friendly and loving",
+      temperament = "Friendly",
       muzzle = "No",
     )
 
@@ -105,7 +105,7 @@ if __name__ == "__main__":
     pet_6 = Pet(
       name = "Jelly Bean",
       species = "Poodle",
-      temperament = "Dog and human reactive",
+      temperament = "Reactive",
       muzzle = "Yes",
     )
 
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     pet_7 = Pet(
       name = "Shep",
       species = "Belgian Malinous",
-      temperament = "Aggressive but friendly",
+      temperament = "Aggressive",
       muzzle = "No",
     )
 
