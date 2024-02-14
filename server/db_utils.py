@@ -59,3 +59,15 @@ def add_new_trainer():
 
     db.session.add(new_trainer)
     db.session.commit()
+
+def search_trainer_by():
+    pass
+
+def search_pet_by_species():
+    pass
+
+def search_pet_by_temperament():
+    pass
+
+def search_pet_by_muzzle():
+    pass

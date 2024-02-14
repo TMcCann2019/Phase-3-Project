@@ -9,6 +9,10 @@ from db_utils import (
     display_add_training_to_pet_submenu,
     add_new_pet,
     add_new_trainer,
+    search_trainer_by,
+    search_pet_by_species,
+    search_pet_by_temperament,
+    search_pet_by_muzzle
 )
 
 
@@ -75,13 +79,16 @@ def display_all_trainers():
     print("[magenta]What do you want to do now? [/magenta]")
     print("1. [sandy_brown]See more about the trainer[/sandy_brown]")
     print("2. [green]Remove a Trainer[/green]")
-    print("3. [light_pink1]Exit[/light_pink1]")
+    print("3. [red]Search for a Trainer[/red]")
+    print("4. [light_pink1]Exit[/light_pink1]")
     choice = input("Your choice for the trainers?: ")
     if choice == "1":
         choose_trainer_by_id()
     elif choice == "2":
         remove_trainer_by_id()
     elif choice == "3":
+        search_trainer_by()
+    elif choice == "4":
         return
     else:
         print("Invalid input. Please choose a number above")
@@ -167,7 +174,8 @@ def display_all_pets():
     print("1. [sandy_brown]See more about the pets[/sandy_brown]")
     print("2. [green]Remove a pet[/green]")
     print("3. [violet]Add a new training [/violet]")
-    print("4. [light_pink1]Exit[/light_pink1]")
+    print("4. [red]Search for a Pet[/red]")
+    print("5. [light_pink1]Exit[/light_pink1]")
     choice = input("Choice?: ")
     if choice == "1":
         choose_pet_by_id()
@@ -176,11 +184,31 @@ def display_all_pets():
     elif choice == "3":
         add_new_training_to_pet_by_id()
     elif choice == "4":
+        search_pet_by()
+    elif choice == "5":
         return
     else:
         print("Unknown choice. Pleae choose a number between 1 and 4")
         display_all_pets()
 
+def search_pet_by():
+    print("How would you like to search for the pet?")
+    print("1. [sandy_brown]Species?[/sandy_brown]")
+    print("2. [light_pink1]Temperament?[/light_pink1]")
+    print("3. [red]Do they need a muzzle?[/red]")
+    print("4. [green]Exit[/green]")
+    choice = input("Your choice?: ")
+    if choice == "1":
+        search_pet_by_species()
+    elif choice == "2":
+        search_pet_by_temperament()
+    elif choice == "3":
+        search_pet_by_muzzle()
+    elif choice == "4":
+        return
+    else:
+        print("Unknown choice. Pleae choose a number between 1 and 4")
+        display_all_pets()
 
 def add_new_training_to_pet_by_id():
     search_id = input(
