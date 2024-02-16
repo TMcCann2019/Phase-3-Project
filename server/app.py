@@ -145,11 +145,13 @@ def show_trainer_trainings(trainer):
     trainings = trainer.trainings
     for training in trainings:
         print(f"{training.id} | {training.name}")
+    display_trainer_submenu(trainer)
 
 def update_trainings(trainer):
     trainings = get_trainer_trainings(id = trainer.id)
     if len(trainings) == 0:
         print("No trainings to update")
+        display_trainer_submenu(trainer)
     else:
       print("[magenta]Current Trainings[/magenta]:")
       for training in trainings:
